@@ -4,7 +4,7 @@ import Button from './Button'
 
 const HeroSection = () => {
   return (
-    <div className='flex justify-between items-center h-[500px] bg-purple-200 px-40'>
+    <div className='flex justify-between items-center h-[500px] bg-gray-200 px-40'>
       <div className='flex flex-col '>
         <h1 className='text-2xl mb-2 '>Smart Products</h1>
         <h1 className='text-7xl font-bold mb-4 w-[300px]'>Welcome to Our Store</h1>

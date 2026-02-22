@@ -4,8 +4,8 @@ import { MdDiscount } from "react-icons/md";
 
 const StoreBenefitsBadges = () => {
   return (
-    <div className='flex justify-center gap-1 items-center py-12 '>
-      <div className=' flex  w-[250px] items-center  '>
+    <div className='flex justify-center gap-1 items-center py-12 text-white  '>
+      <div className=' flex  w-[250px] items-center text-white  '>
         <div><FaShippingFast className='text-3xl'/></div>
         <div>
             <h1 className='font-semibold'>Free Shipping</h1>

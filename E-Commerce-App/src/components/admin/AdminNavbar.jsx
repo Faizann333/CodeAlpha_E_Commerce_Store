@@ -1,26 +1,22 @@
-import { useContext } from 'react'
-import Button from './Button'
+import Button from '../Button'
 import { useNavigate, NavLink } from 'react-router-dom'
-import { AuthContext } from '../store/AuthContext'
 import axios from 'axios';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-const UserNavBar = () => {
-    const {user, setUser} = useContext(AuthContext);
+const AdminNavBar = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
+
       axios.post(`${API_BASE_URL}/auth/logout`, {}, { withCredentials: true })
         .then((res) => {
-          navigate("/");
-            setUser(false);
-          alert("Logout successful!");
+          alert("Logout successful!");  
+          navigate('/');
         })
         .catch((err) => {
-          console.log(err);
+          alert("Logout failed: " + err.response.data.message);
         });
-    };
-
+      }
     return (
         <header className='flex justify-between items-center sticky z-50 top-[-10px] h-[70px] bg-gray-800 text-gray-100 px-4'>
             <div className="ml-6 font-bold text-2xl">FLONE</div>
@@ -28,89 +24,69 @@ const UserNavBar = () => {
                 <ul className="flex gap-7 pr-9">
                     <li className="hidden sm:block relative  px-1">
                         <NavLink
-                            to="/"
+                            to="/admin/add-product"
                             className={({ isActive }) =>
                                 `relative inline-block px-1 before:content-[''] before:absolute before:-bottom-1 before:left-0 
        before:h-[2px] before:w-0 before:transition-all before:duration-300 before:bg-purple-500
        ${isActive ? "before:w-full" : "hover:before:w-full"}`
                             }
                         >
-                            Home
+                            Add Product
                         </NavLink>
                     </li>
                     <li className="hidden sm:block relative  px-1">
                         <NavLink
-                            to="/products"
+                            to="/admin/manage-products"
                             className={({ isActive }) =>
                                 `relative inline-block px-1 before:content-[''] before:absolute before:-bottom-1 before:left-0 
        before:h-[2px] before:w-0 before:transition-all before:duration-300 before:bg-purple-500
        ${isActive ? "before:w-full" : "hover:before:w-full"}`
                             }
                         >
-                            Products
+                            Manage Products
                         </NavLink>
                     </li>
 
                     <li className="hidden sm:block relative  px-1">
                         <NavLink
-                            to="/about-us"
+                            to="/admin/orders"
                             className={({ isActive }) =>
                                 `relative inline-block px-1 before:content-[''] before:absolute before:-bottom-1 before:left-0 
        before:h-[2px] before:w-0 before:transition-all before:duration-300 before:bg-purple-500
        ${isActive ? "before:w-full" : "hover:before:w-full"}`
                             }
                         >
-                            About Us
+                            Orders
                         </NavLink>
                     </li>
 
 
                     <li className="hidden sm:block relative  px-1">
                         <NavLink
-                            to="/contact-us"
+                            to="/admin/users"
                             className={({ isActive }) =>
                                 `relative inline-block px-1 before:content-[''] before:absolute before:-bottom-1 before:left-0 
        before:h-[2px] before:w-0 before:transition-all before:duration-300 before:bg-purple-500
        ${isActive ? "before:w-full" : "hover:before:w-full"}`
                             }
                         >
-                            Contact Us
+                            Users
                         </NavLink>
                     </li>
-                    <li className="hidden sm:block relative  px-1">
-                        <NavLink
-                            to="/cart"
-                            className={({ isActive }) =>
-                                `relative inline-block px-1 before:content-[''] before:absolute before:-bottom-1 before:left-0 
-       before:h-[2px] before:w-0 before:transition-all before:duration-300 before:bg-purple-500
-       ${isActive ? "before:w-full" : "hover:before:w-full"}`
-                            }
-                        >
-                            Cart
-                        </NavLink>
-                    </li>
+                  
 
 
                 </ul>
 
             </nav>
-           { user ? (
-            <Button name="Logout" onClick={handleLogout} />
-           ) : 
-           
-           <div className='flex gap-3'>
-                <Button name="Login" onClick={() => {
-                    navigate("/login")
-                }} />
-                <Button name="Sign In" onClick={() => {
-                    navigate("/sign-up")
-                }} />
+            <div className='flex gap-3'> 
+                <Button name="Logout" onClick={handleLogout} />
             </div>
-
-           }
-            
         </header>
     )
 }
-
-export default UserNavBar
+      
+      
+      
+      
+export default AdminNavBar;

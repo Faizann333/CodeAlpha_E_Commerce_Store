@@ -1,13 +1,92 @@
-import React from 'react'
+import React from "react";
 
 const AboutUs = () => {
   return (
-    <div>
-        <h1>About Us</h1>
-        <p>Welcome to our e-commerce store! We are dedicated to providing high-quality products and exceptional customer service.</p>
-    </div>
-  )
-}
+    <div className="min-h-screen bg-gray-100 py-12 px-6">
+      <div className="max-w-6xl mx-auto bg-white shadow-xl rounded-2xl p-10">
 
-export default AboutUs
-    
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-800">
+            About Our Store
+          </h1>
+          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+            Your trusted destination for quality products, affordable prices,
+            and a seamless online shopping experience.
+          </p>
+        </div>
+
+        {/* Mission Section */}
+        <div className="grid md:grid-cols-2 gap-10 mb-12">
+          <div>
+            <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+              Our Mission
+            </h2>
+            <p className="text-gray-600 leading-relaxed">
+              Our mission is to provide high-quality products at competitive
+              prices while delivering exceptional customer service. We aim to
+              make online shopping simple, secure, and enjoyable for everyone.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+              Our Vision
+            </h2>
+            <p className="text-gray-600 leading-relaxed">
+              We strive to become a leading e-commerce platform by combining
+              innovation, technology, and customer-focused service to create a
+              smarter shopping experience.
+            </p>
+          </div>
+        </div>
+
+        {/* Why Choose Us */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-semibold text-center mb-8 text-gray-800">
+            Why Choose Us?
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
+              <h3 className="font-semibold text-lg mb-2">Premium Quality</h3>
+              <p className="text-gray-600 text-sm">
+                Carefully selected products to ensure the best quality for our customers.
+              </p>
+            </div>
+
+            <div className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
+              <h3 className="font-semibold text-lg mb-2">Secure Payments</h3>
+              <p className="text-gray-600 text-sm">
+                Safe and encrypted payment methods for worry-free transactions.
+              </p>
+            </div>
+
+            <div className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
+              <h3 className="font-semibold text-lg mb-2">Fast Delivery</h3>
+              <p className="text-gray-600 text-sm">
+                Reliable and quick shipping to ensure your products reach you on time.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Section */}
+        <div className="text-center border-t pt-8">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+            Get in Touch
+          </h2>
+          <p className="text-gray-600">
+            Have questions or feedback? We would love to hear from you.
+          </p>
+          <p className="text-gray-800 font-medium mt-2">
+            📧 support@yourstore.com | 📱 +92-XXX-XXXXXXX
+          </p>
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
+export default AboutUs;

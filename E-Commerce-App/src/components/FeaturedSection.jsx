@@ -1,11 +1,12 @@
 import React from 'react'
 import ProductList from './ProductList'
 
-const FeaturedSection = () => {
+const FeaturedSection = ({featuredProducts}) => {
+  
   return (
     <div>
-      <h1 className='text-4xl font-bold text-center py-6'>---Featured Products---</h1>
-      <ProductList/>
+      <h1 className='text-4xl font-bold text-center py-6 text-white '>---Featured Products---</h1>
+      <ProductList products={featuredProducts}/>
     </div>
   )
 }

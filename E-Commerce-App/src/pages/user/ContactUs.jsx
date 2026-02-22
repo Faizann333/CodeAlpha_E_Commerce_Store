@@ -1,12 +1,123 @@
-import React from 'react'
+import React, { useState } from "react";
 
 const ContactUs = () => {
-  return (
-    <div>
-      <h1>Contact Us</h1>
-      <p>For any queries or support, please contact us at support@ecommerce.com</p>
-    </div>
-  )
-}
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
 
-export default ContactUs
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    alert("Message sent successfully!");
+
+    // Reset form
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-100 py-12 px-6">
+      <div className="max-w-4xl mx-auto bg-white shadow-xl rounded-2xl p-10">
+
+        {/* Header */}
+        <div className="text-center mb-10">
+          <h1 className="text-4xl font-bold text-gray-800">
+            Contact Us
+          </h1>
+          <p className="text-gray-600 mt-3">
+            Have questions? We'd love to hear from you.
+          </p>
+        </div>
+
+        {/* Contact Info */}
+        <div className="grid md:grid-cols-2 gap-8 mb-10">
+          <div>
+            <h2 className="text-xl font-semibold mb-3">Our Information</h2>
+            <p className="text-gray-600 mb-2">📧 support@yourstore.com</p>
+            <p className="text-gray-600 mb-2">📱 +92-XXX-XXXXXXX</p>
+            <p className="text-gray-600">
+              📍 Rawalpindi, Pakistan
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-semibold mb-3">Business Hours</h2>
+            <p className="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM</p>
+            <p className="text-gray-600">Saturday: 10:00 AM - 4:00 PM</p>
+            <p className="text-gray-600">Sunday: Closed</p>
+          </div>
+        </div>
+
+        {/* Contact Form */}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="w-full border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+            />
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+            />
+          </div>
+
+          <input
+            type="text"
+            name="subject"
+            placeholder="Subject"
+            value={formData.subject}
+            onChange={handleChange}
+            required
+            className="w-full border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+          />
+
+          <textarea
+            name="message"
+            rows="5"
+            placeholder="Your Message"
+            value={formData.message}
+            onChange={handleChange}
+            required
+            className="w-full border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+          />
+
+          <button
+            type="submit"
+            className="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition duration-300"
+          >
+            Send Message
+          </button>
+        </form>
+
+      </div>
+    </div>
+  );
+};
+
+export default ContactUs;
