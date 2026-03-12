@@ -1,12 +1,26 @@
 import axios from "axios";
 import { useState,useEffect,createContext } from "react";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+       const handleLogout = () => {
+              axios.post(`${API_BASE_URL}/auth/logout`, {}, { withCredentials: true })
+                  .then((res) => {
+                      setUser(false);
+                      toast.success("Logout successful!");
+                  })
+                  .catch((err) => {
+                      console.log(err);
+                  });
+         };
+      
+      
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -26,7 +40,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
   return (
-    <AuthContext.Provider value={{ user, setUser , loading}}>
+    <AuthContext.Provider value={{ user, setUser , loading , handleLogout}}>
       {children}
     </AuthContext.Provider>
   );

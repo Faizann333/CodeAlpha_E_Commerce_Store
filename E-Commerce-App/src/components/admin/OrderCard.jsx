@@ -8,7 +8,7 @@ const OrderCard = ({ order }) => {
     <div className="bg-gray-800 shadow-md rounded-xl p-6 mb-6 hover:shadow-lg transition">
 
       {/* Top Section */}
-      <div className="flex justify-between items-center border-b pb-4">
+      <div className="flex flex-col gap-3 sm:flex-row justify-between items-center border-b pb-4">
         <div>
           <h2 className="text-lg font-bold text-gray-300">
             Order ID: {order._id}

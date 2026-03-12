@@ -2,7 +2,6 @@ import { useContext } from "react"
 import {AdminContext} from "../../store/AdminContext"
 import OrderList from "../../components/admin/OrderList"
 
-
 const Orders = () => {
   const {orders} = useContext(AdminContext)
 

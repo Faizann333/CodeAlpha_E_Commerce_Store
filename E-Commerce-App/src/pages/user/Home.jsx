@@ -19,7 +19,7 @@ const Home = () => {
   ,[])
 
   return (
-    <div className="bg-gray-800">
+    <div className="bg-gray-800 min-h-[1700px]">
 
      <HeroSection/>
      <StoreBenefitsBadges/>

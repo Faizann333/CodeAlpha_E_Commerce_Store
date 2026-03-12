@@ -31,13 +31,13 @@ const Login = () => {
   }
 
   return (
-    <div className='min-h-[80vh]'>
+    <div className=' bg-gray-800 min-h-[80vh] '>
       
-         <h1 className='text-3xl font-bold text-center mt-15'>Login to your Account</h1>
-            <form className='w-[400px] mx-auto mt-10 flex flex-col gap-5' onSubmit={handleLogin}>
+         <h1 className='text-3xl font-bold text-center pt-10 text-gray-200'>Login to your Account</h1>
+            <form className='w-[400px]  mx-auto mt-10 flex flex-col items-center gap-5 text-gray-200' onSubmit={handleLogin}>
                
-                <input type="email" placeholder='Email' className='border px-3 py-2 rounded' value={email} onChange={(e) => setEmail(e.target.value)}/>
-                <input type="password" placeholder='Password' className='border px-3 py-2 rounded' value={password} onChange={(e) => setPassword(e.target.value)}/> 
+                <input type="email" placeholder='Email' className='border w-[350px] sm:w-[500px] px-3 py-2 rounded' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                <input type="password" placeholder='Password' className='border w-[350px] sm:w-[500px]   px-3 py-2 rounded' value={password} onChange={(e) => setPassword(e.target.value)}/> 
                 <p>Don't have an account? <Link to="/sign-up" className="text-purple-600 hover:underline">Sign Up</Link></p>   
                 <Button name= "Login" className="bg-purple-600 h-[50px] w-[120px] hover:bg-purple-700"/>
             </form>

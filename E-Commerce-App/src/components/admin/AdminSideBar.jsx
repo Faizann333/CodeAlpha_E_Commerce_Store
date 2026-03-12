@@ -1,35 +1,25 @@
-import Button from '../Button'
-import { useState } from 'react';
-import { useNavigate, NavLink } from 'react-router-dom'
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../store/AuthContext';
-import { FiAlignJustify } from "react-icons/fi";
-import AdminSideBar from './AdminSideBar';
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import Button from '../Button';
+import { useNavigate } from 'react-router-dom';
 
-const AdminNavBar = () => {
-    const { handleLogout } = useContext(AuthContext);
-      const [sidebarOpen, setSidebarOpen] = useState(false);
+const AdminSideBar = () => {
     const navigate = useNavigate();
+    const { handleLogout,user } = useContext(AuthContext);
 
-    const LogoutHandler = async () => {
-      await handleLogout();
-        navigate("/");
-      
+      const LogoutHandler = async () => {
+           await handleLogout();
+             navigate("/");
     }
-    return (
-        <header className='flex justify-between items-center sticky z-50 top-[-10px] h-[70px] bg-black text-gray-100 px-4'>
-              <div className='flex justify-center items-center'>
-                        <FiAlignJustify onClick={() => setSidebarOpen(!sidebarOpen)} className="font-bold text-2xl sm:hidden" />
-                        <h1 className="ml-6 font-bold text-2xl">FLONE</h1>
-                </div>
 
-             {sidebarOpen && <AdminSideBar/>}
-            <nav className='flex items-center gap-3'>
-                <ul className="flex gap-7 pr-9">
-                     <li className="hidden sm:block relative  px-1">
+
+  return (
+    <div className='h-[900px] w-[170px] bg-gray-700  absolute top-[70px] left-0 z-10'>
+        
+     <nav className=' pl-7 flex flex-col  items-center gap-3'>
+                <ul className="flex flex-col gap-4 pr-9">
+                    <li className="sm:hidden block relative  px-1">
                         <NavLink
                             to="/admin/dashboard"
                             className={({ isActive }) =>
@@ -38,10 +28,10 @@ const AdminNavBar = () => {
        ${isActive ? "before:w-full" : "hover:before:w-full"}`
                             }
                         >
-                            Dashboard
+                            DashBoard
                         </NavLink>
                     </li>
-                    <li className="hidden sm:block relative  px-1">
+                    <li className="sm:hidden block relative  px-1">
                         <NavLink
                             to="/admin/add-product"
                             className={({ isActive }) =>
@@ -53,7 +43,8 @@ const AdminNavBar = () => {
                             Add Product
                         </NavLink>
                     </li>
-                    <li className="hidden sm:block relative  px-1">
+
+                    <li className="sm:hidden block relative  px-1">
                         <NavLink
                             to="/admin/manage-products"
                             className={({ isActive }) =>
@@ -66,7 +57,8 @@ const AdminNavBar = () => {
                         </NavLink>
                     </li>
 
-                    <li className="hidden sm:block relative  px-1">
+
+                    <li className="sm:hidden block relative  px-1">
                         <NavLink
                             to="/admin/orders"
                             className={({ isActive }) =>
@@ -78,9 +70,7 @@ const AdminNavBar = () => {
                             Orders
                         </NavLink>
                     </li>
-
-
-                    <li className="hidden sm:block relative  px-1">
+                      <li className="sm:hidden block relative  px-1">
                         <NavLink
                             to="/admin/users"
                             className={({ isActive }) =>
@@ -92,21 +82,16 @@ const AdminNavBar = () => {
                             Users
                         </NavLink>
                     </li>
-                  
 
-
+                    {user && (
+                        <div>
+                             <Button name="Logout" className={" sm:block"} onClick={LogoutHandler} />
+                        </div>
+                    )}
                 </ul>
-
             </nav>
-            <div className='flex gap-3'> 
-                <Button name="Logout" onClick={LogoutHandler} />
-                <Button name="User Panel" onClick={()=> navigate("/")} />
-            </div>
-        </header>
-    )
+    </div>
+  )
 }
-      
-      
-      
-      
-export default AdminNavBar;
+
+export default AdminSideBar;

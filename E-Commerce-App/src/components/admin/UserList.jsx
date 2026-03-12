@@ -7,7 +7,7 @@ const UserList = () => {
 
   return (
     <div className=" flex w-full justify-center gap-3 p-5 min-h-screen flex-wrap">
-      {users.map((user)=>(
+      {users && users.map((user)=>(
         <UserCard key={user._id} user = {user}/>
       ))}
     </div>

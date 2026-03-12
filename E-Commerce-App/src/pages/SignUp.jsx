@@ -40,14 +40,14 @@ const SignUp = () => {
   }
 
   return (
-    <div className='min-h-[80vh]'>
+    <div className=' bg-gray-800 min-h-[80vh]'>
       
-         <h1 className='text-3xl font-bold text-center mt-10'>Create New Account</h1>
-            <form className='w-[400px] mx-auto mt-10 flex flex-col gap-5' onSubmit={handleSignup}>
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder='Name' className='border px-3 py-2 rounded'/>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' className='border px-3 py-2 rounded'/>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' className='border px-3 py-2 rounded'/>
-                <input type="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder='Confirm Password' className='border px-3 py-2 rounded'/> 
+         <h1 className='text-3xl font-bold text-center pt-10 text-gray-200'>Create New Account</h1>
+            <form className='w-[400px] mx-auto mt-10 flex flex-col items-center gap-5 text-gray-200' onSubmit={handleSignup}>
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder='Name' className='border px-3 py-2 rounded  w-[350px] sm:w-[500px]'/>
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' className='border px-3 py-2 rounded  w-[350px] sm:w-[500px]'/>
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' className='border px-3 py-2 rounded  w-[350px] sm:w-[500px]'/>
+                <input type="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder='Confirm Password' className='border px-3 py-2 rounded  w-[350px] sm:w-[500px]'/> 
                 <p>Already have an account? <Link to="/login" className="text-purple-600 hover:underline">Login</Link></p>   
                 <Button name= "Sign Up" className="bg-purple-600 h-[50px] w-[120px] hover:bg-purple-700"/>
             </form>

@@ -32,7 +32,7 @@ const Cart = () => {
   
   
     
-    <div className="min-h-[80vh] px-6 md:px-16 py-10 bg-gray-50">
+    <div className="min-h-[80vh] px-6 md:px-16 py-10 bg-gray-500">
       <h1 className="text-3xl font-bold mb-8">Your Cart</h1>
 
       <div className="grid md:grid-cols-3 gap-10">

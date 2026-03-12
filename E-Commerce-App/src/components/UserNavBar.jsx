@@ -1,30 +1,36 @@
-import { useContext } from 'react'
+import { useContext ,useState} from 'react'
 import Button from './Button'
 import { useNavigate, NavLink } from 'react-router-dom'
 import { AuthContext } from '../store/AuthContext'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { FiAlignJustify } from "react-icons/fi";
+import { FaShoppingCart } from "react-icons/fa";
+import UserSideBar from './UserSideBar';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const UserNavBar = () => {
-    const {user, setUser} = useContext(AuthContext);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const { handleLogout,user } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const handleLogout = () => {
-      axios.post(`${API_BASE_URL}/auth/logout`, {}, { withCredentials: true })
-        .then((res) => {
-          navigate("/");
-            setUser(false);
-          toast.success("Logout successful!");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+    const LogoutHandler = async () => {
+           await handleLogout();
+             navigate("/");
+    }
+
+   
 
     return (
         <header className='flex justify-between items-center sticky z-50 top-[-10px] h-[70px] bg-black text-gray-100 px-4'>
-            <div className="ml-6 font-bold text-2xl">FLONE</div>
+            <div className='flex justify-center items-center'>
+                <FiAlignJustify onClick={() => setSidebarOpen(!sidebarOpen)} className="font-bold text-2xl sm:hidden" />
+                <h1 className="ml-6 font-bold text-2xl">FLONE</h1>
+            </div>
+
+            {/* Sidebar */}
+            {sidebarOpen && <UserSideBar/>}
+
             <nav className='flex items-center gap-3'>
                 <ul className="flex gap-7 pr-9">
                     <li className="hidden sm:block relative  px-1">
@@ -90,34 +96,37 @@ const UserNavBar = () => {
                             Cart
                         </NavLink>
                     </li>
-
-
                 </ul>
-
             </nav>
             <div>
 
             </div>
-           { user ? (
-            <div className='flex gap-3'>
-            <Button name="Logout" onClick={handleLogout} />
-             <Button name="Admin Dashboard" onClick={() => {
-                navigate("/admin/dashboard")
-             }} />
-             </div>
-           ) : 
-           
-           <div className='flex gap-3'>
-                <Button name="Login" onClick={() => {
-                    navigate("/login")
-                }} />
-                <Button name="Sign In" onClick={() => {
-                    navigate("/sign-up")
-                }} />
-            </div>
+            {user ? (
+                <div className='flex gap-3'>
+                    <Button name="Logout" className={"hidden sm:block"} onClick={LogoutHandler} />
+                    <Button name="Admin Dashboard" onClick={() => {
+                        navigate("/admin/dashboard")
+                    }} />
+                </div>
+            ) :
 
-           }
-            
+                <div className='flex gap-3'>
+                    <Button name="Login" onClick={() => {
+                        navigate("/login")
+                    }} />
+                    <div className='flex items-center'>
+                        <Button className={"sm:hidden h-full "} name={<FaShoppingCart size={25}/>} onClick={() => {
+                            navigate("/cart")
+                        }} />
+                    </div>
+                   
+                    <Button className={"hidden sm:block"} name="Sign In" onClick={() => {
+                        navigate("/sign-up")
+                    }} />
+                </div>
+
+            }
+
         </header>
     )
 }
